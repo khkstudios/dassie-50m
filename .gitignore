@@ -1,0 +1,11 @@
+/data
+/checkpoints
+/out
+*.bin
+*.pt
+*.log
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.DS_Store
