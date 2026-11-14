@@ -1,2 +1,2 @@
-# dassie-1m
+# dassie-50m
 
