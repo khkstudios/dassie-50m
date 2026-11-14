@@ -3,15 +3,15 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/keegalix/dassie-50m/releases"><img alt="Version" src="https://img.shields.io/badge/version-0.1.0-8b6a4a"></a>
-  <a href="https://github.com/keegalix/dassie-50m"><img alt="Git" src="https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white"></a>
-  <a href="https://github.com/keegalix/dassie-50m/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/keegalix/dassie-50m"></a>
+  <a href="https://github.com/khkstudios/dassie-50m/releases"><img alt="Version" src="https://img.shields.io/badge/version-0.1.0-8b6a4a"></a>
+  <a href="https://github.com/khkstudios/dassie-50m"><img alt="Git" src="https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white"></a>
+  <a href="https://github.com/khkstudios/dassie-50m/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/khkstudios/dassie-50m"></a>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-green"></a>
   <br>
   <a href="https://www.python.org/"><img alt="Python 3.12" src="https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white"></a>
   <a href="https://pytorch.org/"><img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-2.x-EE4C2C?logo=pytorch&logoColor=white"></a>
   <a href="https://developer.apple.com/metal/pytorch/"><img alt="Apple Silicon MPS" src="https://img.shields.io/badge/Apple%20Silicon-MPS-000000?logo=apple&logoColor=white"></a>
-  <a href="https://huggingface.co/keegalix/dassie-50m"><img alt="Hugging Face" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-dassie--50m-FFD21E"></a>
+  <a href="https://huggingface.co/khkstudios/dassie-50m"><img alt="Hugging Face" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-dassie--50m-FFD21E"></a>
   <a href="https://github.com/huggingface/tokenizers"><img alt="Tokenizers" src="https://img.shields.io/badge/tokenizers-BPE%208k-FF9D00"></a>
   <a href="https://docs.astral.sh/uv/"><img alt="uv" src="https://img.shields.io/badge/uv-package%20manager-DE5FE9?logo=uv&logoColor=white"></a>
 </p>
@@ -28,15 +28,15 @@ The model is a hand-written Llama-style transformer (RMSNorm, rotary embeddings,
 directly to Hugging Face's `LlamaForCausalLM` format, so the finished model runs in `transformers`, llama.cpp,
 Ollama and LM Studio with no custom code.
 
-**Model on Hugging Face:** https://huggingface.co/keegalix/dassie-50m
+**Model on Hugging Face:** https://huggingface.co/khkstudios/dassie-50m
 
 ## Layout
 
 ```
 dassie/            model.py (the transformer), config.py (presets), tokenizer.py, data.py, utils.py
-scripts/           train_tokenizer.py → prepare_data.py → train.py → sample.py → export_hf.py → push_hf.py
+scripts/           train_tokenizer.py → prepare_data.py → train.py → sample.py → export_hf.py → push_hf.py (+ render_card.py)
 tests/             model sanity checks + HF export parity test
-model_card.md      Hugging Face model card
+model_card.md      Hugging Face model card template ({{placeholders}} filled by push_hf.py)
 ```
 
 ## Setup
@@ -72,7 +72,7 @@ uv run python scripts/sample.py --ckpt checkpoints/50m/best.pt -n 3
 # 5. export to Hugging Face format (verifies logits match) and publish
 uv run python scripts/export_hf.py --ckpt checkpoints/50m/best.pt --out out/dassie-50m
 uv run hf auth login
-uv run python scripts/push_hf.py --folder out/dassie-50m --repo keegalix/dassie-50m
+uv run python scripts/push_hf.py --folder out/dassie-50m --repo khkstudios/dassie-50m
 ```
 
 Presets live in `dassie/config.py`. `--max-steps`, `--batch-size`, `--grad-accum` and `--dtype` override them

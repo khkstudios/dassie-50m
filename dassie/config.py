@@ -21,7 +21,7 @@ class ModelConfig:
 
 @dataclass
 class TrainConfig:
-    batch_size: int = 32            # sequences per micro-batch
+    batch_size: int = 16           # sequences per micro-batch
     grad_accum: int = 8             # micro-batches per optimizer step
     lr: float = 1e-3
     min_lr: float = 1e-4
